@@ -248,6 +248,12 @@
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
         }
+
+        .download-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
         
         /* Features Section */
         .features {
@@ -305,7 +311,14 @@
             padding: 80px 0;
         }
         
-        .toc-content h3 {
+        .toc-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 40px;
+            align-items: start;
+        }
+        
+        .toc-main h3 {
             font-size: 2.5rem;
             margin-bottom: 40px;
             text-align: center;
@@ -340,81 +353,11 @@
             font-weight: 600;
             margin-top: 8px;
         }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-                text-align: center;
-            }
-            
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            /* Mobile: Stack ToC and sidebar ad vertically */
-            .toc-section .container > div {
-                grid-template-columns: 1fr !important;
-                gap: 20px !important;
-            }
-            
-            /* Mobile: Make sidebar ad smaller */
-            .ad-space[style*="height: 600px"] {
-                height: 280px !important;
-                position: static !important;
-            }
-        }
-        
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .success-message {
-            background: linear-gradient(45deg, #10b981, #34d399);
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            margin-top: 20px;
-            display: none;
-        }
-        
-        .success-message.show {
-            display: block;
-            animation: slideInUp 0.5s ease-out;
+
+        /* Sidebar Ad */
+        .sidebar-ad {
+            position: sticky;
+            top: 20px;
         }
         
         /* Download Popup Modal */
@@ -447,6 +390,7 @@
             position: relative;
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: slideInUp 0.5s ease-out;
         }
         
         .popup-close {
@@ -551,10 +495,149 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
         }
+
+        /* Success Messages */
+        .success-message {
+            background: linear-gradient(45deg, #10b981, #34d399);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
         
+        .success-message.show {
+            display: block;
+            animation: slideInUp 0.5s ease-out;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-content h3 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #fff, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #fbbf24;
+            display: block;
+        }
+
+        .stat-label {
+            opacity: 0.9;
+            margin-top: 8px;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .toc-content {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+            
+            .sidebar-ad {
+                position: static !important;
+            }
+
+            .cta-stats {
+                gap: 30px;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
         }
     </style>
 </head>
@@ -562,19 +645,6 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <!-- AdSense Header Ad -->
-            <div class="ad-space">
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-8675174041057656"
-                     data-ad-slot="1234567890"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
-            
             <div class="hero-content">
                 <div class="hero-text">
                     <h1>Building CRM with Agentic AI</h1>
@@ -595,28 +665,13 @@
                             <div style="margin: 20px 0; font-size: 0.9rem; opacity: 0.8;">
                                 A Comprehensive Guide
                             </div>
-                            <div class="author">Aram Oganyan</div>
+                            <div class="author">Expert Authors</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- AdSense Middle Ad -->
-    <div class="container">
-        <div class="ad-space">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-8675174041057656"
-                 data-ad-slot="2345678901"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-    </div>
 
     <!-- Download Section -->
     <section class="download-section">
@@ -625,8 +680,7 @@
                 <h3>🚀 Get Your Free Copy</h3>
                 <p>Join thousands of developers and business leaders who are transforming their CRM systems with Agentic AI</p>
                 
-                <!-- Netlify automatically handles this form -->
-                <form name="ebook-download" method="POST" data-netlify="true">
+                <form id="downloadForm">
                     <div class="form-group">
                         <label for="name">Full Name</label>
                         <input type="text" id="name" name="name" placeholder="Enter your full name" required>
@@ -642,14 +696,14 @@
                         <input type="text" id="company" name="company" placeholder="Your company name">
                     </div>
                     
-                    <button type="submit" class="download-btn">
+                    <button type="submit" class="download-btn" id="downloadBtn">
                         📥 Download Free Ebook
                     </button>
                 </form>
                 
                 <div class="success-message" id="successMessage">
-                    <h4>🎉 Thank you for downloading!</h4>
-                    <p>Check your email for the download link. The ebook will arrive within 5 minutes.</p>
+                    <h4>🎉 Thank you for signing up!</h4>
+                    <p>Please wait while we prepare your download...</p>
                 </div>
             </div>
         </div>
@@ -693,4 +747,351 @@
                 </div>
                 
                 <div class="feature-card">
-                    <div class
+                    <div class="feature-icon">📈</div>
+                    <h4>Performance Optimization</h4>
+                    <p>Optimize AI model performance, reduce latency, and scale your CRM system to handle millions of customer interactions efficiently.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Table of Contents Section -->
+    <section class="toc-section">
+        <div class="container">
+            <div class="toc-content">
+                <div class="toc-main">
+                    <h3>📚 Complete Table of Contents</h3>
+                    
+                    <div class="toc-list">
+                        <div class="toc-item">
+                            <div class="toc-number">Chapter 1</div>
+                            <div class="toc-title">Introduction to Agentic AI</div>
+                        </div>
+                        
+                        <div class="toc-item">
+                            <div class="toc-number">Chapter 2</div>
+                            <div class="toc-title">CRM System Architecture</div>
+                        </div>
+                        
+                        <div class="toc-item">
+                            <div class="toc-number">Chapter 3</div>
+                            <div class="toc-title">AI Model Selection & Integration</div>
+                        </div>
+                        
+                        <div class="toc-item">
+                            <div class="toc-number">Chapter 4</div>
+                            <div class="toc-title">Claude Code Implementation</div>
+                        </div>
+                        
+                        <div class="toc-item">
+                            <div class="toc-number">Chapter 5</div>
+                            <div class="toc-title">GEMINI 2.5 Advanced Features</div>
+                        </div>
+                        
+                        <div class="toc-item">
+                            <div class="toc-number">Chapter 6</div>
+                            <div class="toc-title">Qwen 4.1 Optimization</div>
+                        </div>
+                        
+                        <div class="toc-item">
+                            <div class="toc-number">Chapter 7</div>
+                            <div class="toc-title">GLM-4.5 Best Practices</div>
+                        </div>
+                        
+                        <div class="toc-item">
+                            <div class="toc-number">Chapter 8</div>
+                            <div class="toc-title">Security & Data Protection</div>
+                        </div>
+                        
+                        <div class="toc-item">
+                            <div class="toc-number">Chapter 9</div>
+                            <div class="toc-title">Testing & Quality Assurance</div>
+                        </div>
+                        
+                        <div class="toc-item">
+                            <div class="toc-number">Chapter 10</div>
+                            <div class="toc-title">Deployment & Scaling</div>
+                        </div>
+                        
+                        <div class="toc-item">
+                            <div class="toc-number">Appendix</div>
+                            <div class="toc-title">Code Examples & Resources</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sidebar Ad -->
+                <div class="sidebar-ad">
+                    <div class="ad-space" style="height: 600px;">
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-8675174041057656"
+                             data-ad-slot="3456789012"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                        <!-- Download Popup Modal -->
+    <div class="download-popup" id="downloadPopup">
+        <div class="popup-content">
+            <button class="popup-close" onclick="closeDownloadPopup()">&times;</button>
+            
+            <div class="popup-title">🎉 Thank You for Downloading!</div>
+            <p style="opacity: 0.9; margin-bottom: 20px;">Your free ebook is being prepared. Please enjoy this brief message from our sponsor.</p>
+            
+            <!-- Ad Space in Popup -->
+            <div class="popup-ad-space">
+                <ins class="adsbygoogle"
+                     style="display:block; width: 100%; height: 250px;"
+                     data-ad-client="ca-pub-8675174041057656"
+                     data-ad-slot="4567890123"
+                     data-ad-format="rectangle"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            
+            <!-- Countdown Section -->
+            <div class="countdown-section">
+                <div class="countdown-text">Your download will begin in:</div>
+                <div class="countdown-timer" id="countdownTimer">10</div>
+                <div class="countdown-progress">
+                    <div class="countdown-progress-bar" id="countdownProgressBar"></div>
+                </div>
+                <p style="opacity: 0.8; font-size: 0.9rem;">Please do not close this window</p>
+            </div>
+            
+            <!-- Download Ready Section (Hidden initially) -->
+            <div class="download-ready" id="downloadReady">
+                <h4 style="color: #34d399; margin-bottom: 15px;">✅ Download Ready!</h4>
+                <p style="margin-bottom: 20px;">Your eBook is now downloading. If the download doesn't start automatically, click the button below.</p>
+                <button class="final-download-btn" onclick="generatePDF()">
+                    📥 Download Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+                             (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h3>Ready to Transform Your CRM?</h3>
+                <p style="font-size: 1.2rem; opacity: 0.9; margin-bottom: 40px;">Join the AI revolution in customer relationship management</p>
+                
+                <div class="cta-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">250+</span>
+                        <div class="stat-label">Pages of Content</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <div class="stat-label">Code Examples</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">10K+</span>
+                        <div class="stat-label">Downloads</div>
+                    </div>
+                </div>
+                
+                <button onclick="scrollToForm()" class="download-btn pulse" style="max-width: 300px; margin: 0 auto; display: block;">
+                    🚀 Get Your Free Copy Now
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Building CRM with Agentic AI. All rights reserved.</p>
+            <p style="margin-top: 10px; opacity: 0.7; font-size: 0.9rem;">
+                This comprehensive guide is available for free to help advance AI development in business applications.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Download the actual PDF file from your downloads folder
+        function generatePDF() {
+            // Direct download from your downloads folder
+            const a = document.createElement('a');
+            a.href = '/downloads/Building CRM wiht Agentic AI.pdf'; // Using your exact filename
+            a.download = 'Building CRM with Agentic AI.pdf'; // Clean filename for user's download
+            a.target = '_blank'; // Opens in new tab as fallback
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            
+            // Track successful download
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'file_download', {
+                    'event_category': 'ebook',
+                    'event_label': 'Building-CRM-with-Agentic-AI.pdf',
+                    'value': 1
+                });
+            }
+            
+            console.log('Download initiated for: Building CRM with Agentic AI.pdf');
+        }
+
+        // Close download popup
+        function closeDownloadPopup() {
+            document.getElementById('downloadPopup').classList.remove('show');
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
+
+        // Start countdown and show popup
+        function startDownloadProcess() {
+            const popup = document.getElementById('downloadPopup');
+            const countdownTimer = document.getElementById('countdownTimer');
+            const progressBar = document.getElementById('countdownProgressBar');
+            const downloadReady = document.getElementById('downloadReady');
+            const countdownSection = document.querySelector('.countdown-section');
+            
+            // Show popup
+            popup.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Disable background scrolling
+            
+            let timeLeft = 10;
+            const totalTime = 10;
+            
+            const countdownInterval = setInterval(() => {
+                timeLeft--;
+                countdownTimer.textContent = timeLeft;
+                
+                // Update progress bar
+                const progress = ((totalTime - timeLeft) / totalTime) * 100;
+                progressBar.style.width = progress + '%';
+                
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    
+                    // Hide countdown section
+                    countdownSection.style.display = 'none';
+                    
+                    // Show download ready section
+                    downloadReady.classList.add('show');
+                    
+                    // Start download automatically
+                    generatePDF();
+                    
+                    // Track download event
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'download_completed', {
+                            'event_category': 'ebook',
+                            'event_label': 'Building CRM with Agentic AI'
+                        });
+                    }
+                    
+                    // Auto-close popup after 5 seconds
+                    setTimeout(() => {
+                        closeDownloadPopup();
+                    }, 5000);
+                }
+            }, 1000);
+        }
+
+        // Form submission handler
+        document.getElementById('downloadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const company = formData.get('company');
+            
+            // Validate form
+            if (!name || !email) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Disable form temporarily
+            const submitBtn = document.getElementById('downloadBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
+            
+            // Show success message briefly
+            const successMessage = document.getElementById('successMessage');
+            successMessage.classList.add('show');
+            
+            // Store lead data
+            localStorage.setItem('ebookDownloaded', JSON.stringify({
+                name: name,
+                email: email,
+                company: company,
+                timestamp: new Date().toISOString()
+            }));
+            
+            // Track form submission
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'form_submit', {
+                    'event_category': 'lead_generation',
+                    'event_label': 'ebook_download_form'
+                });
+            }
+            
+            // Start download process after short delay
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+                startDownloadProcess();
+                
+                // Reset form
+                submitBtn.disabled = false;
+                submitBtn.textContent = '📥 Download Free Ebook';
+            }, 1500);
+        });
+
+        // Scroll to form function
+        function scrollToForm() {
+            document.querySelector('.download-section').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Track form interactions
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', function() {
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'form_interaction', {
+                        'event_category': 'engagement',
+                        'event_label': this.name
+                    });
+                }
+            });
+        });
+
+        // Keyboard event handling
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const popup = document.getElementById('downloadPopup');
+                if (popup.classList.contains('show')) {
+                    closeDownloadPopup();
+                }
+            }
+        });
+
+        // Prevent popup close during countdown unless explicitly closed
+        document.getElementById('downloadPopup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                // Only allow closing by clicking outside if countdown is complete
+                const downloadReady = document.getElementById('downloadReady');
+                if (downloadReady.classList.contains('show')) {
+                    closeDownloadPopup();
+                }
+            }
+        });
+
+        // Initialize AdSense
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>
