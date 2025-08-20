@@ -919,13 +919,42 @@
     </footer>
 
     <script>
+        // Alternative: Use renamed file without spaces
+        function generatePDFAlternative() {
+            // If you rename the file to remove spaces
+            const a = document.createElement('a');
+            a.href = '/downloads/Building-CRM-with-Agentic-AI.pdf'; // No spaces version
+            a.download = 'Building CRM with Agentic AI.pdf'; // User-friendly name
+            a.target = '_blank';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
         // Download the actual PDF file from your downloads folder
         function generatePDF() {
+            // Try URL encoded version first
+            const encodedFilename = encodeURIComponent('Building CRM wiht Agentic AI.pdf');
+            
             // Direct download from your downloads folder
             const a = document.createElement('a');
-            a.href = '/downloads/Building CRM wiht Agentic AI.pdf'; // Using your exact filename
+            a.href = `/downloads/${encodedFilename}`; // URL encoded path
             a.download = 'Building CRM with Agentic AI.pdf'; // Clean filename for user's download
             a.target = '_blank'; // Opens in new tab as fallback
+            
+            // Add error handling
+            a.onerror = function() {
+                console.log('Primary download failed, trying alternative...');
+                // Fallback: try without encoding
+                const fallbackLink = document.createElement('a');
+                fallbackLink.href = '/downloads/Building-CRM-with-Agentic-AI.pdf'; // Renamed version
+                fallbackLink.download = 'Building CRM with Agentic AI.pdf';
+                fallbackLink.target = '_blank';
+                document.body.appendChild(fallbackLink);
+                fallbackLink.click();
+                document.body.removeChild(fallbackLink);
+            };
+            
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
