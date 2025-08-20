@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building CRM with Agentic AI - Free Comprehensive Guide</title>
+    <meta name="description" content="Download our comprehensive guide on building advanced CRM systems with Agentic AI. Features Claude Code, GEMINI 2.5, Qwen 4.1, and GLM-4.5 technologies.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #667eea 100%);
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(45deg, #fff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInLeft 1s ease-out;
+        }
+        
+        .hero-text .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 32px;
+            animation: slideInLeft 1s ease-out 0.2s both;
+        }
+        
+        .ai-models {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            animation: slideInLeft 1s ease-out 0.4s both;
+        }
+        
+        .ai-tag {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .ai-tag:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* AdSense Placeholder */
+        .ad-space {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Ebook Preview */
+        .ebook-preview {
+            position: relative;
+            animation: slideInRight 1s ease-out 0.6s both;
+        }
+        
+        .ebook-cover {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            position: relative;
+            transform: perspective(1000px) rotateY(-15deg);
+            transition: transform 0.3s ease;
+        }
+        
+        .ebook-cover:hover {
+            transform: perspective(1000px) rotateY(-5deg) translateY(-10px);
+        }
+        
+        .cover-placeholder {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cover-placeholder h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        
+        .cover-placeholder .author {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 20px;
+        }
+        
+        /* Download Form */
+        .download-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 60px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideInUp 1s ease-out 0.8s both;
+        }
+        
+        .download-form {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .download-form h3 {
+            font-size: 2rem;
+            margin-bottom: 16px;
+            background: linear-gradient(45deg, #fff, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .download-form p {
+            opacity: 0.9;
+            margin-bottom: 32px;
+            font-size: 1.1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .download-btn {
+            background: linear-gradient(45deg, #f59e0b, #fbbf24);
+            color: #1f2937;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .feature-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        
+        .feature-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        /* Table of Contents */
+        .toc-section {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 80px 0;
+        }
+        
+        .toc-content h3 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .toc-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .toc-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #fbbf24;
+            transition: all 0.3s ease;
+        }
+        
+        .toc-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(5px);
+        }
+        
+        .toc-number {
+            color: #fbbf24;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        
+        .toc-title {
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .success-message {
+            background: linear-gradient(45deg, #10b981, #34d399);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .success-message.show {
+            display: block;
+            animation: slideInUp 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <!-- AdSense Header Ad -->
+            <div class="ad-space">
+                [Your AdSense Header Ad Code Here - 728x90 Leaderboard]
+            </div>
+            
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Building CRM with Agentic AI</h1>
+                    <p class="subtitle">Master the future of customer relationship management with autonomous AI agents that think, learn, and act independently.</p>
+                    
+                    <div class="ai-models">
+                        <span class="ai-tag">🤖 Claude Code</span>
+                        <span class="ai-tag">🧠 GEMINI 2.5</span>
+                        <span class="ai-tag">🌟 Qwen 4.1</span>
+                        <span class="ai-tag">⚡ GLM-4.5</span>
+                    </div>
+                </div>
+                
+                <div class="ebook-preview">
+                    <div class="ebook-cover">
+                        <div class="cover-placeholder">
+                            <h2>BUILDING CRM<br>WITH<br>AGENTIC AI</h2>
+                            <div style="margin: 20px 0; font-size: 0.9rem; opacity: 0.8;">
+                                A Comprehensive Guide
+                            </div>
+                            <div class="author">Aram Oganyan</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download-section">
+        <div class="container">
+            <div class="download-form">
+                <h3>🚀 Get Your Free Copy</h3>
+                <p>Join thousands of developers and business leaders who are transforming their CRM systems with Agentic AI</p>
+                
+                <form id="downloadForm" action="mailto:madebyaram@gmail.com" method="post" enctype="text/plain">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company">Company (Optional)</label>
+                        <input type="text" id="company" name="company" placeholder="Your company name">
+                    </div>
+                    
+                    <button type="submit" class="download-btn">
+                        📥 Download Free Ebook
+                    </button>
+                </form>
+                
+                <div class="success-message" id="successMessage">
+                    <h4>🎉 Thank you for downloading!</h4>
+                    <p>Check your email for the download link. The ebook will arrive within 5 minutes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h3 style="text-align: center; font-size: 2.5rem; margin-bottom: 20px;">What You'll Learn</h3>
+            <p style="text-align: center; opacity: 0.9; font-size: 1.2rem; max-width: 600px; margin: 0 auto;">Comprehensive insights into building next-generation CRM systems powered by autonomous AI agents</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h4>Agentic AI Fundamentals</h4>
+                    <p>Understand the core principles of autonomous AI systems that can make decisions and take actions independently with minimal human supervision.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🏗️</div>
+                    <h4>CRM Architecture Design</h4>
+                    <p>Learn to design scalable, microservices-based CRM architectures that seamlessly integrate with multiple AI models and handle complex workflows.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h4>Implementation Strategies</h4>
+                    <p>Step-by-step implementation guides covering environment setup, AI integration, testing, deployment, and maintenance best practices.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h4>AI Model Integration</h4>
+                    <p>Master integrating Claude Code, GEMINI 2.5, Qwen 4.1, and GLM-4.5 for different CRM use cases like lead scoring and customer support.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h4>Security & Compliance</h4>
+                    <p>Implement robust security measures, ensure GDPR/CCPA compliance, and maintain audit trails for AI-powered CRM systems.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h4>Performance Optimization</h4>
+                    <p>Optimize AI response times, implement caching strategies, and ensure your CRM delivers fast, responsive experiences at scale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Table of Contents Section -->
+    <section class="toc-section">
+        <div class="container">
+            <div class="toc-content">
+                <h3>📚 Complete Table of Contents</h3>
+                
+                <div class="toc-list">
+                    <div class="toc-item">
+                        <div class="toc-number">Chapter 1</div>
+                        <div class="toc-title">Introduction to Agentic AI</div>
+                    </div>
+                    
+                    <div class="toc-item">
+                        <div class="toc-number">Chapter 2</div>
+                        <div class="toc-title">AI Models Overview</div>
+                    </div>
+                    
+                    <div class="toc-item">
+                        <div class="toc-number">Chapter 3</div>
+                        <div class="toc-title">Planning Your AI-Powered CRM</div>
+                    </div>
+                    
+                    <div class="toc-item">
+                        <div class="toc-number">Chapter 4</div>
+                        <div class="toc-title">Design Considerations</div>
+                    </div>
+                    
+                    <div class="toc-item">
+                        <div class="toc-number">Chapter 5</div>
+                        <div class="toc-title">Implementation Steps</div>
+                    </div>
+                    
+                    <div class="toc-item">
+                        <div class="toc-number">Chapter 6</div>
+                        <div class="toc-title">Testing and Deployment</div>
+                    </div>
+                    
+                    <div class="toc-item">
+                        <div class="toc-number">Chapter 7</div>
+                        <div class="toc-title">Maintenance & Future Enhancements</div>
+                    </div>
+                    
+                    <div class="toc-item">
+                        <div class="toc-number">Chapter 8</div>
+                        <div class="toc-title">Best Practices</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AdSense Footer Ad -->
+    <div class="container">
+        <div class="ad-space">
+            [Your AdSense Footer Ad Code Here - 728x90 Leaderboard]
+        </div>
+    </div>
+
+    <script>
+        // Form submission handling with mailto fallback
+        document.getElementById('downloadForm').addEventListener('submit', function(e) {
+            // For demo purposes, show success message
+            e.preventDefault();
+            
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const company = document.getElementById('company').value;
+            
+            // Simple validation
+            if (!name || !email) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = this.querySelector('.download-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = '📥 Processing...';
+            submitBtn.disabled = true;
+            
+            // Simulate processing
+            setTimeout(() => {
+                // Show success message
+                this.style.display = 'none';
+                document.getElementById('successMessage').classList.add('show');
+                
+                // Create mailto link with form data
+                const subject = 'CRM Agentic AI Ebook Download Request';
+                const body = `Name: ${name}\nEmail: ${email}\nCompany: ${company || 'Not specified'}\n\nPlease send the CRM Agentic AI ebook to this email address.`;
+                const mailtoLink = `mailto:madebyaram@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                
+                // Open email client
+                window.location.href = mailtoLink;
+                
+                // Reset form after delay
+                setTimeout(() => {
+                    this.style.display = 'block';
+                    this.reset();
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    document.getElementById('successMessage').classList.remove('show');
+                }, 5000);
+            }, 2000);
+        });
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.feature-card, .toc-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
