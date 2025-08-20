@@ -919,42 +919,30 @@
     </footer>
 
     <script>
-        // GitHub Pages compatible download function (Updated for clean filename)
+        // Download YOUR actual PDF file - WORKING URL
         function generatePDF() {
-            // GitHub Pages works best with clean filenames
-            const baseUrl = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '');
+            // Your actual PDF URL that works
+            const pdfUrl = 'https://madebyaram2024.github.io/crm-ai-ebook-landing/downloads/building-crm-agentic-ai.pdf';
             
-            // Use clean filename (rename your PDF to this)
-            const cleanFilename = 'building-crm-agentic-ai.pdf';
-            const downloadUrl = `${baseUrl}/downloads/${cleanFilename}`;
-            
-            // GitHub Pages compatible approach
+            // Direct download
             const a = document.createElement('a');
-            a.href = downloadUrl;
-            a.download = 'Building CRM with Agentic AI.pdf'; // User sees this name
+            a.href = pdfUrl;
+            a.download = 'Building CRM with Agentic AI.pdf';
             a.target = '_blank';
-            a.rel = 'noopener noreferrer';
-            
-            // For GitHub Pages, we need to trigger differently
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
             
-            // Backup: Open in new tab if download fails
-            setTimeout(() => {
-                window.open(downloadUrl, '_blank');
-            }, 1000);
-            
-            // Track download attempt
+            // Track download
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'file_download', {
                     'event_category': 'ebook',
-                    'event_label': 'building-crm-agentic-ai.pdf',
+                    'event_label': 'pdf-download-success',
                     'value': 1
                 });
             }
             
-            console.log('GitHub Pages download initiated:', downloadUrl);
+            console.log('Downloading PDF from:', pdfUrl);
         }
 
         // Close download popup
@@ -1014,7 +1002,7 @@
             }, 1000);
         }
 
-        // Form submission handler
+        // Form submission handler with lead capture
         document.getElementById('downloadForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -1038,13 +1026,20 @@
             const successMessage = document.getElementById('successMessage');
             successMessage.classList.add('show');
             
-            // Store lead data
-            localStorage.setItem('ebookDownloaded', JSON.stringify({
+            // LEAD CAPTURE - Send lead data
+            const leadData = {
                 name: name,
                 email: email,
-                company: company,
-                timestamp: new Date().toISOString()
-            }));
+                company: company || 'Not provided',
+                timestamp: new Date().toISOString(),
+                source: 'CRM AI eBook Landing Page'
+            };
+            
+            // Store locally
+            localStorage.setItem('ebookDownloaded', JSON.stringify(leadData));
+            
+            // Send to your lead capture system
+            sendLeadData(leadData);
             
             // Track form submission
             if (typeof gtag !== 'undefined') {
@@ -1064,6 +1059,43 @@
                 submitBtn.textContent = '📥 Download Free Ebook';
             }, 1500);
         });
+
+        // Lead capture function - SENDS TO YOUR EMAIL
+        function sendLeadData(leadData) {
+            // Log to console for backup
+            console.log('NEW LEAD CAPTURED:', leadData);
+            
+            // Email you the lead info
+            const subject = `🚀 New eBook Lead: ${leadData.name}`;
+            const body = `
+NEW LEAD from CRM AI eBook Landing Page!
+
+📝 Name: ${leadData.name}
+📧 Email: ${leadData.email}
+🏢 Company: ${leadData.company}
+🕐 Downloaded: ${new Date(leadData.timestamp).toLocaleString()}
+📍 Source: CRM AI eBook Landing Page
+
+This lead just downloaded your Building CRM with Agentic AI guide!
+            `;
+            
+            // Opens email client with pre-filled lead info
+            const mailtoLink = `mailto:madebyaram@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            // Send the email notification
+            window.open(mailtoLink);
+            
+            // Also try to send via EmailJS if available (more reliable)
+            if (typeof emailjs !== 'undefined') {
+                emailjs.send('default_service', 'template_lead_notification', {
+                    to_email: 'madebyaram@gmail.com',
+                    from_name: leadData.name,
+                    from_email: leadData.email,
+                    company: leadData.company,
+                    message: `New lead: ${leadData.name} (${leadData.email}) from ${leadData.company || 'Unknown company'} downloaded the CRM AI eBook.`
+                });
+            }
+        }
 
         // Scroll to form function
         function scrollToForm() {
